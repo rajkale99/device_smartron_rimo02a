@@ -143,7 +143,10 @@ PRODUCT_PACKAGES += \
     hwcomposer.msm8952 \
     memtrack.msm8952 \
     liboverlay \
-    libgenlock
+    libgenlock \
+    libtinyxml \
+    libqdMetaData \
+    libqdMetaData.system
 
 # Display / OpenGLES
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -153,6 +156,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # HIDL
 PRODUCT_PACKAGES += \
     android.hidl.base@1.0 \
+    android.hidl.manager@1.0 \
     android.hidl.manager@1.0-java
 
 # IRQ
