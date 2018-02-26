@@ -16,6 +16,14 @@
 
 LOCAL_PATH := device/smartron/rimo02a
 
+# Screen density
+PRODUCT_AAPT_PREF_CONFIG := xxhdpi
+PRODUCT_AAPT_CONFIG := normal
+
+# Dalvik heap and hwui memory limits
+$(call inherit-product, frameworks/native/build/phone-xxhdpi-3072-dalvik-heap.mk)
+$(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-3072-hwui-memory.mk)
+
 # Ramdisk
 PRODUCT_PACKAGES += \
     fstab.qcom \
@@ -38,3 +46,4 @@ PRODUCT_COPY_FILES += \
 
 # Call the proprietary setup
 $(call inherit-product-if-exists, vendor/smartron/rimo02a/rimo02a-vendor.mk)
+
