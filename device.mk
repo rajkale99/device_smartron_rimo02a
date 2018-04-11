@@ -16,10 +16,25 @@
 
 LOCAL_PATH := device/smartron/rimo02a
 
+# Ramdisk
+PRODUCT_PACKAGES += \
+    fstab.qcom \
+    init.class_main.sh \
+    init.qcom.early_boot.sh \
+    init.qcom.post_boot.sh \
+    init.qcom.rc \
+    init.qcom.sh \
+    init.qcom.usb.rc \
+    init.target.rc \
+    ueventd.qcom.rc
+
+# Sensors
+PRODUCT_PACKAGES += \
+    sensors.msm8952
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/sensors/sensor_def_qcomdev.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/sensor_def_qcomdev.conf \
+    $(LOCAL_PATH)/sensors/hals.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/hals.conf
+
 # Call the proprietary setup
 $(call inherit-product-if-exists, vendor/smartron/rimo02a/rimo02a-vendor.mk)
-
-
-
-
-
