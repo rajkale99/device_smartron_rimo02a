@@ -28,21 +28,15 @@ PRODUCT_MANUFACTURER := Smartron
 
 PRODUCT_GMS_CLIENTID_BASE := android-smartron
 
-TARGET_VENDOR_PRODUCT_NAME := srtphone
-TARGET_VENDOR_DEVICE_NAME := rimo02a
-PRODUCT_BUILD_PROP_OVERRIDES += TARGET_DEVICE=rimo02a PRODUCT_NAME=srtphone
-
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    PRIVATE_BUILD_DESC="rimo02a-user 7.1.2 T5524INDUQK-373 373 release-keys"
-    
-BUILD_FINGERPRINT="Smartron/srtphone/rimo02a:7.1.2/T5524INDUQK-373/373:user/release-keys"
-    
+    TARGET_DEVICE=rimo02a
+    PRODUCT_NAME=srtphone
+    PRIVATE_BUILD_DESC="rimo02a-user 8.0.0 T5524INDURC-475 475 release-keys"
+
+BUILD_FINGERPRINT="Smartron/srtphone/rimo02a:8.0.0/T5524INDURC-475/475:user/release-keys"
+
 PRODUCT_SYSTEM_PROPERTY_BLACKLIST += ro.product.model
-    
+
 # Release name
 PRODUCT_RELEASE_NAME :=  rimo02a
-    
-    
-    
-    
-    
+
