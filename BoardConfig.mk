@@ -51,6 +51,9 @@ TARGET_KERNEL_SOURCE := kernel/smartron/msm8976
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
 TARGET_KERNEL_CONFIG := lineageos_rimo02a_defconfig
 
+# Filesystem Config
+TARGET_FS_CONFIG_GEN := $(DEVICE_PATH)/config.fs
+
 # Partitions
 BOARD_BOOTIMAGE_PARTITION_SIZE := 67108864
 BOARD_CACHEIMAGE_PARTITION_SIZE := 268435456
@@ -155,7 +158,7 @@ TARGET_USES_MEDIA_EXTENSIONS := true
 USE_CLANG_PLATFORM_BUILD := true
 
 # Recovery
-TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/etc/fstab.qcom
+TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/fstab.qcom
 
 # System Properties
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
