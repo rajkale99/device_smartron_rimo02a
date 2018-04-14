@@ -49,7 +49,7 @@ TARGET_KERNEL_HEADER_ARCH := arm64
 
 TARGET_KERNEL_SOURCE := kernel/smartron/msm8976
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
-TARGET_KERNEL_CONFIG := lineageos_rimo02a_defconfig
+TARGET_KERNEL_CONFIG := msm-perf_defconfig
 
 # Filesystem Config
 TARGET_FS_CONFIG_GEN := $(DEVICE_PATH)/config.fs
