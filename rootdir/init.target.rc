@@ -27,7 +27,7 @@
 #
 #
 
-import init.carrier.rc
+import /vendor/etc/init/hw/init.carrier.rc
 
 on early-init
     mkdir /firmware 0771 system system
@@ -45,15 +45,15 @@ on fs
     # results in failure to launch late-start class.
 
     wait /dev/block/bootdevice/by-name/cache
-    mount ext4 /dev/block/bootdevice/by-name/cache /cache nosuid nodev barrier=1
+    mount ext4 /dev/block/bootdevice/by-name/cache /cache nosuid nodev barrier=1 noatime
 
     wait /dev/block/bootdevice/by-name/persist
-    mount ext4 /dev/block/bootdevice/by-name/persist /persist nosuid nodev barrier=1
+    mount ext4 /dev/block/bootdevice/by-name/persist /persist nosuid nodev barrier=1 noatime
     mkdir /persist/data 0700 system system
     restorecon_recursive /persist
 
     wait /dev/block/bootdevice/by-name/dsp
-    mount ext4 /dev/block/bootdevice/by-name/dsp /dsp nosuid nodev barrier=1
+    mount ext4 /dev/block/bootdevice/by-name/dsp /dsp nosuid nodev barrier=1 noatime
     restorecon_recursive /dsp
 
     wait /dev/block/bootdevice/by-name/modem
@@ -74,8 +74,16 @@ on post-fs-data
     mkdir /data/misc/dts 0770 media audio
     mkdir /data/misc/audio_pp 0771 media audio
 
+    #[CTS] testNativeCrash : Allow BootReceiver to read /dev/fscklogs/log file
+    chmod 0644 /dev/fscklogs/log
+
 #Create folder for mm-qcamera-daemon
 mkdir /data/vendor/camera 0770 camera camera
+    # goodix fingerprint data by simcom start
+    mkdir /data/system/fingerprint/ 0770 system system
+    mkdir /data/gf_data/ 0770 system system
+    chown system system /dev/goodix_fp
+    # goodix fingerprint data by simcom end
 
 #start camera server as daemon
 service qcamerasvr /system/vendor/bin/mm-qcamera-daemon
@@ -113,12 +121,12 @@ service perfd /system/vendor/bin/perfd
    user root
    disabled
 
-service seempd /system/bin/seempd
-   class late_start
-   user system
-   group system
-   socket seempdw dgram 0666 system system
-   oneshot
+#service seempd /system/bin/seempd
+#   class late_start
+#   user system
+#   group system
+#   socket seempdw dgram 0666 system system
+#   oneshot
 
 service thermal-engine /system/vendor/bin/thermal-engine
    class main
@@ -263,7 +271,7 @@ service adsprpcd /system/vendor/bin/adsprpcd
 service hvdcp_opti /system/vendor/bin/hvdcp_opti
     class main
     user root
-    group system wakelock
+    group root
 
 on property:init.svc.dts_configurator=stopped
     start dtseagleservice
@@ -285,17 +293,18 @@ on property:init.svc.per_mgr=running
 on property:sys.shutdown.requested=*
     stop per_proxy
 
-service energy-awareness /system/bin/energy-awareness
-    class main
-    user root
-    group system
-    oneshot
-    disabled
+#service energy-awareness /system/bin/energy-awareness
+#    class main
+#    user root
+#    group system
+#    oneshot
+#    disabled
 
-service mdtpd /system/vendor/bin/mdtpd
-    class late_start
-    user root
-    group system radio drmrpc
+#Commenting mdtpd service as part of commenting out MTDP feature
+#service mdtpd /system/vendor/bin/mdtpd
+#    class late_start
+#    user root
+#    group system radio drmrpc
 
 on boot
     write /sys/devices/soc.0/78b8000.i2c/i2c-4/4-0020/input/input0/fw_name PR1702898-s3528t_00260005_00380008.img
