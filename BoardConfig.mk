@@ -148,8 +148,14 @@ TARGET_KEYMASTER_WAIT_FOR_QSEE := true
 # Media
 TARGET_USES_MEDIA_EXTENSIONS := true
 
-# clang
+# Clang
 USE_CLANG_PLATFORM_BUILD := true
+
+# Peripheral manager
+TARGET_PER_MGR_ENABLED := true
+
+# Power
+TARGET_POWERHAL_VARIANT := qcom
 
 # Recovery
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/fstab.qcom
