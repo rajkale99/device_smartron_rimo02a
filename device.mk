@@ -168,6 +168,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     keystore.msm8952
 
+# Power
+PRODUCT_PACKAGES += \
+    power.msm8952
+
 # Ramdisk
 PRODUCT_PACKAGES += \
     fstab.qcom \
